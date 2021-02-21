@@ -22,7 +22,7 @@ class filter_base_test extends uvm_test;
         uvm_top.print_topology();
     endfunction
 
-    extern function void build_phase(uvm_phase phase);
+    extern virtual function void build_phase(uvm_phase phase);
 endclass
 
 

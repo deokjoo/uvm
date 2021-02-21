@@ -13,15 +13,14 @@ class axis_agent extends uvm_agent;
         super.new(name, parent);
     endfunction
 
-
-    extern function void build_phase(uvm_phase phase);
+    extern virtual function void build_phase(uvm_phase phase);
 
 endclass
 
 //
 //
-virtual function void axis_agent::build_phase (uvm_phase phase);
-    super.build_phase(phase)
+function void axis_agent::build_phase (uvm_phase phase);
+    super.build_phase(phase);
 
     if( !uvm_config_db#(filter_env_cfg)::get(this, "", "cfg", m_cfg) )
         `uvm_fatal(get_full_name(), "cannot find m_cfg")
