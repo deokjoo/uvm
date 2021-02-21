@@ -5,7 +5,7 @@
 //
 //
 
-`timescale 1ns/1ps
+//`timescale 1ns/1ps
 
 //
 //
@@ -25,7 +25,7 @@ module top ();
     initial begin
         $display("hello");
 
-        run_test();
+        run_test("filter_base_test");
 
 
         #100 $finish;
