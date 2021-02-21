@@ -39,7 +39,7 @@ function void filter_base_test::build_phase(uvm_phase phase);
 
 
     //m_env
-    m_env = filter_env::type_id::create("m_env", this);
+    m_env = filter00_env::type_id::create("m_env", this);
 
 
 
