@@ -20,13 +20,13 @@ module top ();
 
     always #10 clk = ~clk;
 
-    axis_if axis_if0(clk);
+    axis_if axis_m00(clk);
+    axis_if axis_s00(clk);
 
     initial begin
-        $display("hello");
-
+        
+        uvm_config_db#(virtual axis_if)::set(null, "", "axis_m00", axis_m00);
         run_test("filter_base_test");
-
 
         #100 $finish;
     end

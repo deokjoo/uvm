@@ -64,6 +64,8 @@ function void filter00_env::build_phase(uvm_phase phase);
 
     //Set agent configuration
     m_axis_m00_cfg = axis_agent_cfg::type_id::create("m_axis_m00_cfg", this);
+    m_axis_m00_cfg._if = m_env_cfg.axis_if_m00;
+
     uvm_config_db#(axis_agent_cfg)::set(this,"m_axis_m00", "cfg", m_axis_m00_cfg);
     
     //Set agent configuration
