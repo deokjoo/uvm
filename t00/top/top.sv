@@ -28,7 +28,7 @@ module top ();
         uvm_config_db#(virtual axis_if)::set(null, "", "axis_m00", axis_m00);
         run_test("filter_base_test");
 
-        #100 $finish;
+        #1000 $finish;
     end
 
 
