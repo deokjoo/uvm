@@ -43,13 +43,15 @@ class filter00_env extends filter_env;
     axis_agent_cfg  m_axis_s00_cfg;
     axis_agent      m_axis_m00    ;
     axis_agent      m_axis_s00    ;
-    axis_scoreboard m_axis_scbd   ;
+    axis_scbd       m_axis_scbd   ;
 
     function new(string name="filter00_env", uvm_component parent=null);
         super.new(name, parent);
     endfunction
 
-    extern virtual function void build_phase (uvm_phase phase);
+    //
+    extern virtual function void build_phase  (uvm_phase phase);
+    extern virtual function void connect_phase(uvm_phase phase);
 
 endclass
 
@@ -69,14 +71,20 @@ function void filter00_env::build_phase(uvm_phase phase);
     uvm_config_db#(axis_agent_cfg)::set(this,"m_axis_s00", "cfg", m_axis_s00_cfg);
     
     //
-    m_axis_m00 = axis_agent::type_id::create("m_axis_m00", this);
-    m_axis_s00 = axis_agent::type_id::create("m_axis_s00", this);
-
-    m_axis_scbd= axis_scoreboard::type_id::create("m_axis_scbd", this);
-
+    m_axis_m00 = axis_agent::type_id::create("m_axis_m00" , this);
+    m_axis_s00 = axis_agent::type_id::create("m_axis_s00" , this);
+    m_axis_scbd= axis_scbd ::type_id::create("m_axis_scbd", this);
 
 endfunction
 
+//
+//
+function void filter00_env::connect_phase(uvm_phase phase);
+    super.connect_phase(phase);
+
+    m_axis_m00.m_mon.m_analysys_port.connect(m_axis_scbd.m_analysis_imp);
+
+endfunction
 
 
 
