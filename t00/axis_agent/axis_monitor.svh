@@ -1,9 +1,8 @@
+//---------------------------------------------------------
 //
 //
 //
-//
-//
-
+//---------------------------------------------------------
 class axis_monitor extends uvm_monitor;
     `uvm_component_utils(axis_monitor)
 
@@ -17,7 +16,7 @@ class axis_monitor extends uvm_monitor;
 
     //
     extern virtual function void build_phase(uvm_phase phase);
-    // extern virtual task run_phase(uvm_phase phase);
+    extern virtual task run_phase(uvm_phase phase);
 endclass
 
 //
@@ -32,12 +31,12 @@ function void axis_monitor::build_phase(uvm_phase phase);
 endfunction
 
 //
-// task axis_monitor::run_phase(uvm_phase phase);
-//     super.run_phase(phase);
+task axis_monitor::run_phase(uvm_phase phase);
+    super.run_phase(phase);
 
-//     forever begin
-//         @(posedge m_cfg._if);
+    forever begin
+        @(posedge m_cfg._if.ACLK);
 
-//         `uvm_info(get_full_name(), "HI", UVM_LOW);
-//     end
-// endtask
+        `uvm_info(get_full_name(), "MON", UVM_LOW);
+    end
+endtask

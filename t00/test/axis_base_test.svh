@@ -4,7 +4,6 @@
 //
 //
 //
-
 class filter_base_test extends uvm_test;
     `uvm_component_utils(filter_base_test)
 
@@ -27,27 +26,26 @@ class filter_base_test extends uvm_test;
     extern virtual function void build_phase(uvm_phase phase);
 endclass
 
-
 //
 //
 //
 function void filter_base_test::build_phase(uvm_phase phase);
     super.build_phase(phase);
 
-
+    m_env = filter00_env::type_id::create("m_env", this);
+    
     if(!uvm_config_db#(virtual axis_if)::get(this, "", "axis_m00", axis_if_m00))
-        `uvm_fatal(get_full_name(), "Cannot get VIF from configuration database!")
+        `uvm_fatal(get_full_name(), "cannot find axis_m00 vif")
 
     //m_env_cfg setting
     m_env_cfg = filter_env_cfg::type_id::create("m_env_cfg");
     
     m_env_cfg.axis_if_m00 = axis_if_m00;
 
-    uvm_config_db#(filter_env_cfg)::set(this, "*", "m_env_cfg", m_env_cfg);
+    uvm_config_db#(filter_env_cfg)::set(this, "m_env", "m_env_cfg", m_env_cfg);
 
 
     //m_env
-    m_env = filter00_env::type_id::create("m_env", this);
 
 
 
