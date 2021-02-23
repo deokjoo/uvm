@@ -35,7 +35,7 @@ function void axis_agent::build_phase (uvm_phase phase);
 
     //instants
     m_mon = axis_monitor::type_id::create("m_mon", this);
-    m_drv = axis_monitor::type_id::create("m_drv", this);
+    m_drv = axis_driver ::type_id::create("m_drv", this);
     m_sqr = uvm_sequencer#(axis_pixel)::type_id::create("m_sqr", this);
 
 endfunction

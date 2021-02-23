@@ -5,8 +5,8 @@
 //---------------------------------------------------------
 
 class axis_driver extends uvm_driver #(axis_pixel);
-    uvm_component_utils(axis_driver);
-
+    `uvm_component_utils(axis_driver);
+        
     axis_agent_cfg m_cfg;
 
     function  new(string name="axis_driver", uvm_component parent=null);
@@ -33,10 +33,10 @@ endfunction
 //
 //
 task axis_driver::run_phase(uvm_phase phase);
+    axis_pixel data;
+        
     super.run_phase(phase);
     
-    axis_pixel data;
-
     forever begin
         seq_item_port.get_next_item(data);
         seq_item_port.item_done();
