@@ -44,6 +44,7 @@ class filter00_env extends filter_env;
     axis_agent      m_axis_m00    ;
     axis_agent      m_axis_s00    ;
     axis_scbd       m_axis_scbd   ;
+    axis_seqs       m_seqs        ;
 
     function new(string name="filter00_env", uvm_component parent=null);
         super.new(name, parent);
@@ -52,7 +53,7 @@ class filter00_env extends filter_env;
     //
     extern virtual function void build_phase  (uvm_phase phase);
     extern virtual function void connect_phase(uvm_phase phase);
-
+    extern virtual task          run_phase    (uvm_phase phase);
 endclass
 
 //
@@ -73,6 +74,7 @@ function void filter00_env::build_phase(uvm_phase phase);
     uvm_config_db#(axis_agent_cfg)::set(this,"m_axis_s00", "cfg", m_axis_s00_cfg);
     
     //
+    m_seqs     = axis_seqs ::type_id::create("m_seqs",      this);
     m_axis_m00 = axis_agent::type_id::create("m_axis_m00" , this);
     m_axis_s00 = axis_agent::type_id::create("m_axis_s00" , this);
     m_axis_scbd= axis_scbd ::type_id::create("m_axis_scbd", this);
@@ -88,7 +90,17 @@ function void filter00_env::connect_phase(uvm_phase phase);
 
 endfunction
 
+//
+task filter00_env::run_phase(uvm_phase phase);
+    super.run_phase(phase);
 
+    phase.raise_objection(this);
+
+    m_sqr.start(m0_axis_m00.m_sqr);
+
+    phase.drop_objection(this);
+
+endtask
 
 
 
