@@ -16,10 +16,15 @@ endclass
 //
 //
 task axis_seqs::body();
-    axis_pixel item = axis_pixel::type_id::create("item");
 
     for(int i=0; i<5; i++) begin
+        axis_pixel item = axis_pixel::type_id::create("item");
+    
         start_item(item);
+        
+        item.randomize();
+        `uvm_info("SEQ", $sformatf("Generate new item : %s", item.convert2str()), UVM_LOW);
+
         finish_item(item);
     end
 
