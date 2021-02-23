@@ -37,10 +37,10 @@ class filter00_env extends filter_env;
     `uvm_component_utils(filter00_env)
 
     axis_agent_cfg  m_axis_m00_cfg;
-    axis_agent_cfg  m_axis_s00_cfg;
+    // axis_agent_cfg  m_axis_s00_cfg;
     
     axis_agent      m_axis_m00    ;
-    axis_agent      m_axis_s00    ;
+    // axis_agent      m_axis_s00    ;
     axis_scbd       m_axis_scbd   ;
     axis_seqs       m_seqs        ;
 
@@ -63,14 +63,14 @@ function void filter00_env::build_phase(uvm_phase phase);
     // m_axis_s00_cfg = axis_agent_cfg::type_id::create("m_axis_s00_cfg", this);
     m_seqs         = axis_seqs     ::type_id::create("m_seqs",         this);
     m_axis_m00     = axis_agent    ::type_id::create("m_axis_m00" ,    this);
-    m_axis_s00     = axis_agent    ::type_id::create("m_axis_s00" ,    this);
+    // m_axis_s00     = axis_agent    ::type_id::create("m_axis_s00" ,    this);
     m_axis_scbd    = axis_scbd     ::type_id::create("m_axis_scbd",    this);
 
     //set config
     m_axis_m00_cfg._if = m_env_cfg.axis_if_m00;
     
     uvm_config_db#(axis_agent_cfg)::set(this,"m_axis_m00*", "cfg", m_axis_m00_cfg);
-    uvm_config_db#(axis_agent_cfg)::set(this,"m_axis_s00", "cfg", m_axis_s00_cfg);
+    // uvm_config_db#(axis_agent_cfg)::set(this,"m_axis_s00",  "cfg", m_axis_s00_cfg);
 
 endfunction
 
