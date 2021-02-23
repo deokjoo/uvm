@@ -53,6 +53,6 @@ endtask
 task axis_driver::drive_item(axis_pixel item);
 
     repeat(10) @(posedge _if.ACLK);
-    `uvm_info("DRV", $sformatf("drive item : %s %s", $time, item.convert2str()), UVM_LOW);
+    `uvm_info("DRV", $sformatf("drive item : %0d %s", $time, item.convert2str()), UVM_LOW);
 
 endtask

@@ -7,6 +7,8 @@ class axis_monitor extends uvm_monitor;
     `uvm_component_utils(axis_monitor)
 
     axis_agent_cfg m_cfg;
+    virtual axis_if _if ;
+    
     uvm_analysis_port #(axis_pixel) m_analysys_port;
 
     //
@@ -26,6 +28,8 @@ function void axis_monitor::build_phase(uvm_phase phase);
     if( !uvm_config_db#(axis_agent_cfg)::get(this, "", "cfg", m_cfg) )
         `uvm_fatal(get_full_name(), "cannot find cfg")
 
+    _if = m_cfg._if;
+    
     m_analysys_port = new("m_analysys_port", this);
 
 endfunction
@@ -35,8 +39,7 @@ task axis_monitor::run_phase(uvm_phase phase);
     super.run_phase(phase);
 
     forever begin
-        @(posedge m_cfg._if.ACLK);
-
+        @(posedge _if.ACLK);
         `uvm_info(get_full_name(), "MON", UVM_LOW);
     end
 endtask
