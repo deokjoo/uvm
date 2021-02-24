@@ -28,7 +28,6 @@ function void filter_env::build_phase(uvm_phase phase);
     
 endfunction
 
-
 //-----------------------------------------------------------------------------
 // 
 //

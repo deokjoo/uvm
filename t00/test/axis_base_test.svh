@@ -1,9 +1,9 @@
+//---------------------------------------------------------
 //
 //
 //
 //
-//
-//
+//---------------------------------------------------------
 class filter_base_test extends uvm_test;
     `uvm_component_utils(filter_base_test)
 
@@ -29,7 +29,6 @@ class filter_base_test extends uvm_test;
     // 
     extern virtual function void build_phase(uvm_phase phase);
 endclass
-
 //
 //
 //
