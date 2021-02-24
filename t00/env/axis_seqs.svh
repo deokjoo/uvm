@@ -2,8 +2,9 @@
 //
 //
 //
+
 class axis_seqs extends uvm_sequence;
-    `uvm_object_utils(axis_seqs);
+    `uvm_object_utils(axis_seqs)
 
     function new(string name="axis_seqs");
         super.new(name);

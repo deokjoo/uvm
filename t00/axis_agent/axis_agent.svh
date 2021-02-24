@@ -6,10 +6,10 @@
 class axis_agent extends uvm_agent;
     `uvm_component_utils(axis_agent)
 
-    axis_agent_cfg               m_cfg;
-    axis_driver                  m_drv;
-    axis_monitor                 m_mon;
-    uvm_sequencer  #(axis_pixel) m_sqr;
+    axis_agent_cfg                  m_cfg;
+    axis_driver                     m_drv;
+    axis_monitor                    m_mon;
+    uvm_sequencer#(frame_seq_item)  m_sqr;
 
     function new (string name="axis_agent", uvm_component parent=null);
         super.new(name, parent);
@@ -33,8 +33,8 @@ function void axis_agent::build_phase (uvm_phase phase);
     
     //instants
     if(m_cfg.is_active == UVM_ACTIVE) begin
-        m_drv = axis_driver               ::type_id::create("m_drv", this);
-        m_sqr = uvm_sequencer#(axis_pixel)::type_id::create("m_sqr", this);
+        m_drv = axis_driver::type_id::create("m_drv", this);
+        m_sqr = uvm_sequencer#(frame_seq_item)::type_id::create("m_sqr", this);
     end
 
     m_mon = axis_monitor::type_id::create("m_mon", this);

@@ -4,7 +4,7 @@
 //
 //---------------------------------------------------------
 
-class axis_driver extends uvm_driver #(axis_pixel);
+class axis_driver extends uvm_driver #(frame_seq_item);
     `uvm_component_utils(axis_driver);
         
     axis_agent_cfg m_cfg;
@@ -17,7 +17,7 @@ class axis_driver extends uvm_driver #(axis_pixel);
     //
     extern virtual function void build_phase(uvm_phase phase);
     extern virtual task run_phase(uvm_phase phase);
-    extern virtual task drive_item(axis_pixel item);
+    extern virtual task drive_item(frame_seq_item item);
 
 endclass
 
@@ -36,7 +36,7 @@ endfunction
 //
 //
 task axis_driver::run_phase(uvm_phase phase);
-    axis_pixel data;
+    frame_seq_item data;
         
     super.run_phase(phase);
     
@@ -50,7 +50,7 @@ task axis_driver::run_phase(uvm_phase phase);
 endtask
 
 //
-task axis_driver::drive_item(axis_pixel item);
+task axis_driver::drive_item(frame_seq_item item);
 
     repeat(10) @(posedge _if.ACLK);
     `uvm_info("DRV", $sformatf("drive item : %0d %s", $time, item.convert2str()), UVM_LOW);
