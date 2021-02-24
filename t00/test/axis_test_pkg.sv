@@ -21,12 +21,12 @@ package axis_test_pkg;
 
     //sequence..
     // `include "frame_seq_cfg.svh"
-    `include "frame_seq.svh"
     //`include "axis_seqs.svh"
+    `include "frame_seq.svh"
+    `include "filter_seq.svh"
+    `include "filter_sqr.svh"
     
     `include "axis_scoreboard.svh"    
-    `include "filter_seq.svh"
-    `include "filter_ser.svh"
     `include "filter_env_cfg.svh"
     `include "filter_env.svh"
 
