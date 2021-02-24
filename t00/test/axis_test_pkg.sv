@@ -16,7 +16,11 @@ package axis_test_pkg;
     `include "axis_agent_cfg.svh"
     `include "axis_agent.svh"
 
+    //sequence..
+    `include "frame_seq_item.svh"
+    `include "frame_seq.svh"
     `include "axis_seqs.svh"
+    
     `include "axis_scoreboard.svh"    
     `include "filter_env_cfg.svh"
     `include "filter_env.svh"
