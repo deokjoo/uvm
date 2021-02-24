@@ -1,8 +1,8 @@
+//---------------------------------------------------------
 //
 //
 //
-//
-//
+//---------------------------------------------------------
 class filter_env extends uvm_env;
     `uvm_component_utils(filter_env)
 
@@ -42,6 +42,7 @@ class filter00_env extends filter_env;
     axis_agent      m_axis_m00    ;
     axis_agent      m_axis_s00    ;
     axis_scbd       m_axis_scbd   ;
+
     axis_seqs       m_seqs        ;
 
     function new(string name="filter00_env", uvm_component parent=null);
