@@ -23,10 +23,17 @@ module top ();
     axis_if axis_m00(clk);
     axis_if axis_s00(clk);
 
+    string file_i="1.txt:3:3:3";
+    string file_o="1.txt:3:3:3";    
+
+
     initial begin
-        
+
+        uvm_config_db#(string)::set(null, "", "file_i", file_i);
+        uvm_config_db#(string)::set(null, "", "file_o", file_o);    
         uvm_config_db#(virtual axis_if)::set(null, "", "axis_m00", axis_m00);
         uvm_config_db#(virtual axis_if)::set(null, "", "axis_s00", axis_s00);
+        
         run_test("filter_base_test");
 
         #1000 $finish;
