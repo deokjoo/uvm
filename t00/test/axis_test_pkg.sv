@@ -25,6 +25,8 @@ package axis_test_pkg;
     //`include "axis_seqs.svh"
     
     `include "axis_scoreboard.svh"    
+    `include "filter_seq.svh"
+    `include "filter_ser.svh"
     `include "filter_env_cfg.svh"
     `include "filter_env.svh"
 
