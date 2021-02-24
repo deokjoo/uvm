@@ -9,6 +9,7 @@ class filter_env_cfg extends uvm_object;
 
 
     virtual axis_if axis_if_m00;
+    virtual axis_if axis_if_s00;
 
     //
     function new(string name="filter_env_cfg");

@@ -25,17 +25,20 @@ endclass
 function void axis_agent::build_phase (uvm_phase phase);
     super.build_phase(phase);
 
-    //instants
-    m_mon = axis_monitor              ::type_id::create("m_mon", this);
-    m_drv = axis_driver               ::type_id::create("m_drv", this);
-    m_sqr = uvm_sequencer#(axis_pixel)::type_id::create("m_sqr", this);
-    
     //cfg
     if( !uvm_config_db#(axis_agent_cfg)::get(this, "", "cfg", m_cfg) )
         `uvm_fatal(get_full_name(), "cannot find cfg")
 
-
     uvm_config_db#(axis_agent_cfg)::set(this,"*", "cfg", m_cfg);
+    
+    //instants
+    if(m_cfg.is_active == UVM_ACTIVE) begin
+        m_drv = axis_driver               ::type_id::create("m_drv", this);
+        m_sqr = uvm_sequencer#(axis_pixel)::type_id::create("m_sqr", this);
+    end
+
+    m_mon = axis_monitor::type_id::create("m_mon", this);
+
 
 endfunction
 
@@ -44,6 +47,9 @@ endfunction
 function void axis_agent::connect_phase(uvm_phase phase);
     super.connect_phase(phase);
 
-    m_drv.seq_item_port.connect(m_sqr.seq_item_export);
+
+    if(m_cfg.is_active == UVM_ACTIVE) begin
+        m_drv.seq_item_port.connect(m_sqr.seq_item_export);
+    end
 
 endfunction
