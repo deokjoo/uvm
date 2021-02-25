@@ -12,9 +12,8 @@ class filter_base_test extends uvm_test;
     string  m_file_i;
     string  m_file_o;  
 
-
-    filter_env_cfg m_env_cfg; 
-    filter_env     m_env    ; 
+    filter_env_cfg  m_env_cfg; 
+    filter_base_env m_env    ; 
 
     //        
     // constructor

@@ -3,12 +3,12 @@
 //
 //
 //---------------------------------------------------------
-class filter_env extends uvm_env;
-    `uvm_component_utils(filter_env)
+class filter_base_env extends uvm_env;
+    `uvm_component_utils(filter_base_env)
 
     filter_env_cfg m_env_cfg;
 
-    function new(string name="filter_env", uvm_component parent=null);
+    function new(string name="filter_base_env", uvm_component parent=null);
         super.new(name, parent);
     endfunction
 
@@ -19,7 +19,7 @@ endclass
 
 //
 //
-function void filter_env::build_phase(uvm_phase phase);
+function void filter_base_env::build_phase(uvm_phase phase);
     super.build_phase(phase);
 
     if( !uvm_config_db#(filter_env_cfg)::get(this, "", "m_env_cfg", m_env_cfg) )
@@ -32,7 +32,7 @@ endfunction
 // 
 //
 //-----------------------------------------------------------------------------
-class filter00_env extends filter_env;
+class filter00_env extends filter_base_env;
     `uvm_component_utils(filter00_env)
 
     axis_agent_cfg  m_axis_m00_cfg;
