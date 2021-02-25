@@ -14,7 +14,7 @@ module top ();
     `include "uvm_macros.svh"
 
     import uvm_pkg::*;
-    import axis_test_pkg::*;
+    import filter_test_pkg::*;
 
     bit clk;
 
