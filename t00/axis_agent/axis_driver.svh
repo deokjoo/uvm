@@ -52,7 +52,23 @@ endtask
 //
 task axis_driver::drive_item(frame_seq_item item);
 
-    repeat(10) @(posedge _if.ACLK);
+    repeat(10) @(posedge _if.aclk);
     `uvm_info("DRV", $sformatf("drive item : %0d %s", $time, item.convert2str()), UVM_LOW);
+
+    @(_if.cb_master)
+    _if.cb_master.axis_tvalid<= 1;
+    
+    for(int i=0; i<3; i++) begin
+        for(int j=0; j<3; j++) begin
+            @(_if.cb_master)
+            _if.cb_master.axis_tdata <= j;
+        end
+    end
+
+    @(_if.cb_master)
+    _if.cb_master.axis_tvalid<= 0;
+
+    //
+    repeat(10) @(_if.cb_master);
 
 endtask

@@ -39,7 +39,7 @@ task axis_monitor::run_phase(uvm_phase phase);
     super.run_phase(phase);
 
     forever begin
-        @(posedge _if.ACLK);
+        @(posedge _if.aclk);
         // `uvm_info(get_full_name(), $sformatf("%0dns : MON", $time), UVM_LOW);
     end
 endtask
