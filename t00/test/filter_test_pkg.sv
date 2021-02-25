@@ -4,7 +4,7 @@
 //
 //
 //
-package axis_test_pkg;
+package filter_test_pkg;
     `include "uvm_macros.svh"
     
     import uvm_pkg::*;
@@ -31,7 +31,7 @@ package axis_test_pkg;
     `include "filter_env.svh"
 
     //test
-    `include "axis_base_test.svh"
+    `include "filter_base_test.svh"
 
 endpackage
 
