@@ -1,14 +1,17 @@
 //---------------------------------------------------------
 //
-//
+// virtual sequence...
 //
 //--------------------------------------------------------
 class filter_seq extends uvm_sequence;
     `uvm_object_utils(filter_seq)
     `uvm_declare_p_sequencer(filter_sqr)
 
-    frame_seq   m_frame_seq;
+    // config
+    string      m_file_prefix;
 
+    // sequences
+    frame_seq   m_frame_seq;
     //
     function new(string name="filter_seq");
         super.new(name);
@@ -22,8 +25,12 @@ endclass
 //
 //
 task filter_seq::pre_body();
-    m_frame_seq      = frame_seq::type_id::create("frame_seq");
-    m_frame_seq.seqs = 3;
+    //
+    m_frame_seq = frame_seq::type_id::create("frame_seq");
+    
+    m_frame_seq.m_prefix = "1";
+    m_frame_seq.m_nr     =  3 ;
+
 endtask
 
 //
