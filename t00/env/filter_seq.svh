@@ -1,3 +1,8 @@
+
+//
+//
+//
+
 //---------------------------------------------------------
 //
 // virtual sequence...
@@ -12,9 +17,28 @@ class filter_seq extends uvm_sequence;
 
     // sequences
     frame_seq   m_frame_seq;
+
+
+
     //
     function new(string name="filter_seq");
         super.new(name);
+    endfunction
+
+    //
+    function void parse_file_prefix(string str);
+        string prefix;
+        int    w     ;
+        int    h     ;
+        int    nr    ;
+
+        assert ($sscanf(str, "%s %d %d %d", prefix, w, h, nr) == 4);
+
+        m_frame_seq.m_prefix = prefix;
+        m_frame_seq.m_nr     = nr;
+        m_frame_seq.m_w      = w;
+        m_frame_seq.m_h      = h;
+
     endfunction
 
     //
@@ -28,8 +52,8 @@ task filter_seq::pre_body();
     //
     m_frame_seq = frame_seq::type_id::create("frame_seq");
     
-    m_frame_seq.m_prefix = "1";
-    m_frame_seq.m_nr     =  3 ;
+    //
+    parse_file_prefix(m_file_prefix); 
 
 endtask
 

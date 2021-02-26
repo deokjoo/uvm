@@ -23,8 +23,8 @@ module top ();
     axis_if axis_m00(clk);
     axis_if axis_s00(clk);
 
-    string file_i="1.txt:3:3:3";
-    string file_o="1.txt:3:3:3";    
+    string file_i="cruel 3 3 3";
+    string file_o="hello 3 3 3";    
 
 
     initial begin

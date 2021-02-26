@@ -9,6 +9,8 @@ class frame_seq extends uvm_sequence;
     //
     string      m_prefix;
     int         m_nr    ;
+    int         m_w     ;
+    int         m_h     ;
     
     //
     function new(string name="frame_seq");
@@ -31,8 +33,8 @@ task frame_seq::body();
         start_item(frame);
     
         frame.m_input_file = $sformatf("%s_%02d.txt", m_prefix, i);
-        frame.m_w          = 3;
-        frame.m_h          = 3;
+        frame.m_w          = m_w;
+        frame.m_h          = m_h;
 
         `uvm_info("SEQ", $sformatf("Generate new frame : %s", frame.convert2str()), UVM_LOW);
 
