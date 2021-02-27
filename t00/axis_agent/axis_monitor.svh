@@ -45,7 +45,7 @@ task axis_monitor::run_phase(uvm_phase phase);
     super.run_phase(phase);
 
     forever begin
-        @(posedge _if.cb_slave);
+        @(_if.cb_slave);
 
         if(_if.cb_slave.axis_tvalid == 1) begin
             pixel.v = _if.cb_slave.axis_tdata;

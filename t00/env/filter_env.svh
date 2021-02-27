@@ -80,6 +80,9 @@ function void filter00_env::build_phase(uvm_phase phase);
     m_axis_s00_cfg.is_active = UVM_PASSIVE;
 
     uvm_config_db#(axis_agent_cfg)::set(this,"m_axis_s00",  "cfg", m_axis_s00_cfg);
+
+    //set score board
+    uvm_config_db#(string)::set(this,"m_axis_scbd",  "cfg",  m_env_cfg.m_file_o);
     
     //set config seq
     m_seq.m_file_prefix = m_env_cfg.m_file_i;

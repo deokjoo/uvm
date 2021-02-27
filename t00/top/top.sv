@@ -24,7 +24,7 @@ module top ();
     axis_if axis_s00(clk);
 
     string file_i="cruel 3 3 2";
-    string file_o="hello 3 3 2";    
+    string file_o="cruel 3 3 2";    
 
 
     initial begin
