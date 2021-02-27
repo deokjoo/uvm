@@ -1,11 +1,11 @@
+//----------------------------------------------------------
 //
 //
 //
 //
-//
-//
+//----------------------------------------------------------
 
-//`timescale 1ns/1ps
+timescale 1ns/1ps
 
 //
 //
@@ -23,8 +23,8 @@ module top ();
     axis_if axis_m00(clk);
     axis_if axis_s00(clk);
 
-    string file_i="cruel 3 3 3";
-    string file_o="hello 3 3 3";    
+    string file_i="cruel 3 3 2";
+    string file_o="hello 3 3 2";    
 
 
     initial begin

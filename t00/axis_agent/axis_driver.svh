@@ -6,7 +6,8 @@
 class frame_reader extends uvm_object;
     `uvm_object_utils(frame_reader)
 
-    int            m_fd  ;
+    int             m_fd  ;
+    frame_seq_item  m_item; 
 
     function new(string name="frame_reader");
         super.new(name);
@@ -15,7 +16,10 @@ class frame_reader extends uvm_object;
     //
     function int open(frame_seq_item item);
         `uvm_info("DRV", $sformatf("open file: %0d %s", $time, item.m_input_file), UVM_LOW);        
-        m_fd = $fopen(item.m_input_file,"r");
+       
+        m_item = item;
+        m_fd   = $fopen(item.m_input_file,"r");
+        
         if(!m_fd) begin
             `uvm_fatal(get_full_name(), "file open failed")
             return 0;
@@ -70,8 +74,9 @@ function void axis_driver::build_phase(uvm_phase phase);
 
 endfunction
 
+//----------------------------------------------------------
 //
-//
+//----------------------------------------------------------
 task axis_driver::run_phase(uvm_phase phase);
     frame_seq_item item ;
     frame_reader reader = new();        
@@ -89,20 +94,23 @@ endtask
 
 //
 //
-//
 task axis_driver::drive_item(frame_reader reader);
     int pixel;
+    int h        = reader.m_item.m_h;
+    int w        = reader.m_item.m_w;
+    int last_col = w-1;
 
     repeat(10) @(_if.cb_master);    
-    for(int i=0; i<3; i++) begin     
-        for(int j=0; j<3; j++) begin
+    for(int i=0; i<h; i++) begin     
+        
+        for(int j=0; j<w; j++) begin
             // control signal
             _if.cb_master.axis_tvalid<= 1;            
             if(i==0 && j==0)
                 _if.cb_master.axis_tuser <= 1;
             else
                 _if.cb_master.axis_tuser <= 0;               
-            if(j==2)
+            if(j==last_col)
                 _if.cb_master.axis_tlast <= 1;
             else
                 _if.cb_master.axis_tlast <= 0;                                     
