@@ -31,7 +31,7 @@ endfunction
 
 //
 function void axis_scbd::write(axis_pixel data);
-    `uvm_info("write", $sformatf("HI"),UVM_LOW)
+    `uvm_info(get_full_name(), $sformatf("%04h", data.v),UVM_LOW);
 
 endfunction
 

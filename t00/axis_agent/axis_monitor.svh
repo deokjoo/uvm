@@ -22,6 +22,8 @@ class axis_monitor extends uvm_monitor;
 endclass
 
 //
+//
+//
 function void axis_monitor::build_phase(uvm_phase phase);
     super.build_phase(phase);
 
@@ -35,11 +37,23 @@ function void axis_monitor::build_phase(uvm_phase phase);
 endfunction
 
 //
+//
+//
 task axis_monitor::run_phase(uvm_phase phase);
+    axis_pixel pixel  = new();
+    
     super.run_phase(phase);
 
     forever begin
-        @(posedge _if.aclk);
-        // `uvm_info(get_full_name(), $sformatf("%0dns : MON", $time), UVM_LOW);
+        @(posedge _if.cb_slave);
+
+        if(_if.cb_slave.axis_tvalid == 1) begin
+            pixel.v = _if.cb_slave.axis_tdata;
+
+            m_analysys_port.write(pixel);
+
+            // `uvm_info(get_full_name(), $sformatf("%0dns : MON", $time), UVM_LOW);
+        end
     end
+
 endtask
