@@ -121,7 +121,7 @@ endfunction
 function void axis_scbd::write(axis_pixel data);
     int pixel_pred = m_file_reader.read();
 
-    if(pixel_pred != data) begin
+    if(pixel_pred != data.v) begin
         `uvm_info(get_full_name(), $sformatf("[%02t] %04h : %04h", $time, pixel_pred, data.v),UVM_LOW);
     end
 
