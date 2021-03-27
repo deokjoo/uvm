@@ -11,7 +11,7 @@ class atto_base_test extends uvm_test;
     virtual axis_if axis_if_s00;
 
     atto_env_cfg    m_env_cfg  ; 
-    atto_base_env   m_env      ; 
+    atto_env        m_env      ; 
 
     string          m_file_i   ;
     string          m_file_o   ;  
@@ -37,8 +37,8 @@ endclass
         m_env = atto_env::type_id::create("m_env", this);
 
     //load cofig_db from top
-        if(!uvm_config_db#(virtual axis_if)::get(this, "", "atto_m00", atto_if_m00))
-            `uvm_fatal(get_full_name(), "cannot find axis_m00 vif")
+        if(!uvm_config_db#(virtual atto_if)::get(this, "", "atto_m00", atto_if_m00))
+            `uvm_fatal(get_full_name(), "cannot find atto_m00 vif")
         if(!uvm_config_db#(virtual axis_if)::get(this, "", "axis_s00", axis_if_s00))
             `uvm_fatal(get_full_name(), "cannot find axis_m00 vif")
 

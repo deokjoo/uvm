@@ -9,6 +9,9 @@ package filter_test_pkg;
     
     import uvm_pkg::*;
 
+    //utils
+    `include "utils.svh"
+
     //sequnce item
     `include "axis_pixel.svh"
     `include "frame_seq_item.svh"

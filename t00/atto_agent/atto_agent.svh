@@ -32,7 +32,7 @@ function void atto_agent::build_phase (uvm_phase phase);
     uvm_config_db#(atto_agent_cfg)::set(this,"*", "cfg", m_cfg);
     
     //instantsatto_agentem)::type_id::create("m_sqr", this);
-    end
+//    end
 
     m_mon = atto_monitor::type_id::create("m_mon", this);
 

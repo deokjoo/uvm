@@ -20,7 +20,7 @@ module top ();
 
     always #10 clk = ~clk;
 
-    axis_if axis_m00(clk);
+    atto_if atto_m00(clk);
     axis_if axis_s00(clk);
 
     string file_i="cruel 3 3 2";
@@ -28,12 +28,12 @@ module top ();
 
 
     initial begin
-        //uvm_config_db#(string)::set(null, "", "file_i", file_i);
-        //uvm_config_db#(string)::set(null, "", "file_o", file_o);    
-        //uvm_config_db#(virtual axis_if)::set(null, "", "axis_m00", axis_m00);
-        //uvm_config_db#(virtual axis_if)::set(null, "", "axis_s00", axis_s00);
+        uvm_config_db#(string)::set(null, "", "file_i", file_i);
+        uvm_config_db#(string)::set(null, "", "file_o", file_o);    
+        uvm_config_db#(virtual atto_if)::set(null, "", "atto_m00", atto_m00);
+        uvm_config_db#(virtual axis_if)::set(null, "", "axis_s00", axis_s00);
         
-        //run_test("filter_base_test");
+        run_test("atto_base_test");
 
         //#1000 $finish;
     end

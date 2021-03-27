@@ -6,7 +6,7 @@
 //
 //
 class file_reader extends uvm_object;
-    `uvm_object_utils(frame_reader)
+    `uvm_object_utils(file_reader)
 
     //
     int    m_fd   = 0;
