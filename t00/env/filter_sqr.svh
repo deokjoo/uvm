@@ -1,7 +1,7 @@
 
 //---------------------------------------------------------
 //
-//
+// virtual sequencer..
 //---------------------------------------------------------
 class filter_sqr extends uvm_sequencer;
     `uvm_component_utils(filter_sqr)

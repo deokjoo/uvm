@@ -28,6 +28,7 @@ class atto_base_test extends uvm_test;
     // 
     extern virtual function void build_phase(uvm_phase phase);
 endclass
+
 //
 // function :: build_phase
 //
