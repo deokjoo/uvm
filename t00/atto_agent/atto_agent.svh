@@ -21,23 +21,27 @@ class atto_agent extends uvm_agent;
 endclass
 
 //
+//atto_agent::build_phase
 //
-function void atto_agent::build_phase (uvm_phase phase);
-    super.build_phase(phase);
-
-    //cfg
-    if( !uvm_config_db#(atto_agent_cfg)::get(this, "", "cfg", m_cfg) )
-        `uvm_fatal(get_full_name(), "cannot find cfg")
-
-    uvm_config_db#(atto_agent_cfg)::set(this,"*", "cfg", m_cfg);
+    function void atto_agent::build_phase (uvm_phase phase);
+        super.build_phase(phase);
     
-    //instantsatto_agentem)::type_id::create("m_sqr", this);
-//    end
+    //cfg
+        if( !uvm_config_db#(atto_agent_cfg)::get(this, "", "cfg", m_cfg) )
+            `uvm_fatal(get_full_name(), "cannot find cfg")
+    
+        uvm_config_db#(atto_agent_cfg)::set(this,"*", "cfg", m_cfg);
+        
+    //instants
+        if(m_cfg.is_active == UVM_ACTIVE) begin
+            m_drv = atto_driver::type_id::create("m_drv", this);
+            m_sqr = uvm_sequencer#(frame_seq_item)::type_id::create("m_sqr", this);
+        end
+    //    
+        m_mon = atto_monitor::type_id::create("m_mon", this);
 
-    m_mon = atto_monitor::type_id::create("m_mon", this);
 
-
-endfunction
+    endfunction
 
 //
 //
