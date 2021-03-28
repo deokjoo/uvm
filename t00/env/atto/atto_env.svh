@@ -67,10 +67,11 @@
 
 //
 // function : connect_phase
+//
     function void atto_env::connect_phase(uvm_phase phase);
         super.connect_phase(phase);
 
-        // m_atto_m00.m_mon.m_analysys_port.connect(m_axis_scbd.m_analysis_imp);
+        m_axis_s00.m_mon.m_analysys_port.connect(m_axis_scbd.m_analysis_imp);
 
         // connect sequencer to virtual sequencer
         m_sqr.m_axis_seqr = m_atto_m00.m_sqr;

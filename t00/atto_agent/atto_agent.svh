@@ -45,12 +45,12 @@ endclass
 
 //
 //
-function void atto_agent::connect_phase(uvm_phase phase);
-    super.connect_phase(phase);
-
-
-    if(m_cfg.is_active == UVM_ACTIVE) begin
-        m_drv.seq_item_port.connect(m_sqr.seq_item_export);
-    end
-
-endfunction
+    function void atto_agent::connect_phase(uvm_phase phase);
+        super.connect_phase(phase);
+    
+    
+        if(m_cfg.is_active == UVM_ACTIVE) begin
+            m_drv.seq_item_port.connect(m_sqr.seq_item_export);
+        end
+    
+    endfunction
